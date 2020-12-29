@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.api.name }}-deployment
+  labels:
+    app: {{ .Values.deployment.api.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.api.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.api.name }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.api.name }}
+          env:
+            - name: API_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: API_PATH
+            - name: API_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: API_PORT
+            - name: MONGO_CONTAINER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: MONGO_CONTAINER_NAME
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: MONGO_USER
+            - name: MONGO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: MONGO_PASSWORD
+            - name: MONGO_DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: MONGO_DB_NAME
+          image: {{ .Values.deployment.api.image }}:{{ .Values.deployment.api.version }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.deployment.api.container.port }}
+
+          # tty: true
+          # stdin: true
+          # command: ["/bin/sh"]

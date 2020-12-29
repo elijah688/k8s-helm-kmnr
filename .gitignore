@@ -1,0 +1,10 @@
+/api/node_modules
+/api/scripts/env.sh
+/client/node_modules
+/client/build/
+/db
+.env
+/kubernetes/scripts
+/kubernetes/test
+/kubernetes/config
+.eslintcache

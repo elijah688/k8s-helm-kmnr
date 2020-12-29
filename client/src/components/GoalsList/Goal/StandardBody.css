@@ -1,0 +1,20 @@
+.gold-goal .gold-standard-body-delete {
+  border: 1px solid red;
+  color: red;
+}
+
+.gold-goal .gold-standard-body-delete:hover {
+  background-color: red;
+  color: gold;
+}
+
+.light-goal .light-standard-body-delete {
+  border: 1px solid red;
+  color: red;
+}
+
+.light-goal .light-standard-body-delete:hover {
+  background-color: red;
+  border: 1px solid red;
+  color: white;
+}

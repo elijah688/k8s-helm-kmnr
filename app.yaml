@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  app:
+    image: elijah/node-app:1.0.0
+    volumes:
+      - ./api/data:/app/data
+  curl:
+    image: elijah/node:1.0.1
+    tty: true
+    stdin_open: true
+    command: "/bin/sh"
+    volumes:
+      - ./api/scripts:/scripts
+    working_dir: /scripts

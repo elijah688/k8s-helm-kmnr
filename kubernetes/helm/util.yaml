@@ -1,0 +1,12 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  util:
+    image: elijah/helm:1.0.0
+    container_name: util
+    volumes:
+      - ${HOME}/.kube/:/root/.kube:ro
+      - ${PWD}:/work  
+    tty: true
+    stdin_open: true
+    command: /bin/sh
+    working_dir: /work

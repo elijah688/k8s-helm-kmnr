@@ -1,0 +1,50 @@
+version: "3.9"
+services:
+  client:
+    # environment:
+      # API_PORT: $API_PORT
+      # API_PATH: "$REACT_APP_API_PATH"
+    image: elijah/client:1.0.0
+    ports: 
+      - 8000:80
+    container_name: client
+    volumes:
+      - ./client/build:/usr/share/nginx/html:ro
+    working_dir: /usr/share/nginx/html
+    # working_dir: "/etc/nginx/conf.d"
+    # command: > 
+    #   bash -c "./replace.sh ${API_PATH} ${API_PORT} 
+    #   && nginx -g 'daemon off;'"  
+  # api:s
+  #   environment:
+  #     MONGO_CONTAINER_NAME: "$MONGO_CONTAINER_NAME"
+  #     PORT: "$API_PORT"
+  #     MONGO_USER: "$MONGO_USER"
+  #     MONGO_PASSWORD: "$MONGO_PASSWORD"
+  #     MONGO_DB_NAME: "$MONGO_DB_NAME"
+  #   image: elijah/api:1.0.2
+  #   ports: 
+  #     - $API_PORT:$API_PORT
+  #   volumes:
+  #     - ./api:/api
+  #   command: "npm run start"
+  #   working_dir: /api
+  #   container_name: api
+  #   ports:
+  #     - 8000:8000
+  # mongo:
+  #   container_name: "$MONGO_CONTAINER_NAME"
+  #   image: mongo:3.6.21-xenial
+  #   volumes:
+  #     - ./db:/data/db
+  #   volumes:
+  #     - ./client:/client
+  # curl:
+  #   image: elijah/node:1.0.1
+  #   container_name: curl
+  #   volumes:
+  #     - ./api/scripts:/scripts
+  #   working_dir: /scripts
+  #   tty: true
+  #   stdin_open: true
+  #   command: "/bin/sh"

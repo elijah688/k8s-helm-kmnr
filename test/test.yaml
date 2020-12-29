@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    environment:
+      THEME: "true"
+    container_name: nginx
+    image: elijah668/client:1.0.0
+    working_dir: /usr/share/nginx/html
+    ports:
+      - "3000:80"
+    volumes:
+      # - ../client/build:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro

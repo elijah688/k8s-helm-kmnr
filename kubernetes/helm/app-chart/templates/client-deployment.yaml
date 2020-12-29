@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.client.name }}-deployment
+  labels:
+    app: {{ .Values.deployment.client.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.client.name }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/client-config.yaml") . | sha256sum }}
+      labels:
+        app: {{ .Values.deployment.client.name }}
+    spec:
+      containers:
+        - env:
+          - name: THEME
+            valueFrom:
+              configMapKeyRef:
+                name: client-config
+                key: THEME 
+          name: client
+          image: {{ .Values.deployment.client.image }}:{{ .Values.deployment.client.version }}
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: {{ .Values.deployment.client.container.port }}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.deployment.api.name }}-service
+spec:
+  selector:
+    app: {{ .Values.deployment.api.name }}
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: {{ .Values.deployment.api.container.port }}

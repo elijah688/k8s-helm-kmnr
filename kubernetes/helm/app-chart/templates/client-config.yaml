@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  REACT_APP_API_PATH: localhost
+  REACT_APP_PORT: "8000"
+  THEME: {{ .Values.deployment.client.theme }}
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: client-config
