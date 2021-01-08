@@ -16,6 +16,4 @@ WORKDIR /usr/share/nginx/html
 
 COPY --from=build /client/build /client/scripts ./
 
-RUN ./load_config_path.sh
-
 ENTRYPOINT [ "./entrypoint.sh" ]

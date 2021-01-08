@@ -1,0 +1,11 @@
+version: "3.9" # optional since v1.27.0
+services:
+  util:
+    image: elijah668/utils:1.0.0
+    container_name: utils
+    volumes:
+      - ${HOME}/.kube/:/root/.kube:ro
+      - ${PWD}:/service
+    tty: true
+    stdin_open: true
+    working_dir: /service
